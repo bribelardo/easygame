@@ -1,0 +1,18 @@
+{
+  "Focused": [
+    { "name": "Lofi Beats", "url": "https://open.spotify.com/playlist/37i9dQZF1DWWQRwui0ExPn" },
+    { "name": "Deep Focus", "url": "https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ" }
+  ],
+  "Chill": [
+    { "name": "Chill Lofi Study Beats", "url": "https://www.youtube.com/watch?v=5qap5aO4i9A" },
+    { "name": "Peaceful Piano", "url": "https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO" }
+  ],
+  "Energised": [
+    { "name": "Coding Motivation", "url": "https://www.youtube.com/watch?v=4fndeDfaWCg" },
+    { "name": "Workout Tunes", "url": "https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP" }
+  ],
+  "Melancholic": [
+    { "name": "Rainy Day", "url": "https://open.spotify.com/playlist/37i9dQZF1DX3rxVfibe1L0" },
+    { "name": "Sad Indie", "url": "https://open.spotify.com/playlist/37i9dQZF1DX3YSRoSdA634" }
+  ]
+}

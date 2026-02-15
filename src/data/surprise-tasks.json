@@ -1,0 +1,30 @@
+{
+  "Food": [
+    "Make a quick smoothie with whatever's in the fridge",
+    "Whip up a 5-minute grilled cheese",
+    "Try a new snack you've never had",
+    "Brew a fancy coffee or tea",
+    "Eat something with your non-dominant hand"
+  ],
+  "Music": [
+    "Listen to a random song from your Discover Weekly",
+    "Find a lo-fi study playlist and zone out",
+    "Listen to one song from a genre you never try",
+    "Play air drums to your current favourite track",
+    "Discover a new artist from a different country"
+  ],
+  "Code": [
+    "Solve one LeetCode easy in a language you're learning",
+    "Refactor one smelly function in your project",
+    "Write a tiny CLI tool (e.g. random password generator)",
+    "Read one article from your Dev bookmarks",
+    "Fix one TODO or FIXME in your codebase"
+  ],
+  "Study": [
+    "Watch one short educational YouTube video",
+    "Read 5 pages of a technical book",
+    "Summarise one concept you learned today",
+    "Quiz yourself with 3 flashcards",
+    "Explain one concept to an imaginary friend"
+  ]
+}
