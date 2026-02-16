@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+/* Import ALL fonts used in the app */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
   --primary: #ff006e;
@@ -7,7 +9,7 @@
 }
 
 body {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Inter', 'Rajdhani', sans-serif;
   background-color: var(--bg-main);
   color: #1e293b;
   -webkit-font-smoothing: antialiased;

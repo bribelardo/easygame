@@ -37,50 +37,50 @@ const SurpriseMe = ({ addPoints }) => {
 
   return (
     <div className="space-y-12 flex flex-col items-center w-full">
-      {/* Header */}
+      {/* Header - Updated to match Vibe Check font and style */}
       <div className="text-center space-y-4 w-full">
-        <h2 className="text-5xl font-bold tracking-tight" style={{ fontFamily: "'Iceland', sans-serif" }}>
-          SURPRISE ME
-        </h2>
-        <p className="text-xl text-gray-600" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
+        <h1 
+          className="text-4xl md:text-6xl font-black tracking-tighter" 
+          style={{ fontFamily: "'Orbitron', sans-serif" }}
+        >
+          SURPRISE <span className="text-pink-500">ME</span>
+        </h1>
+        <p className="text-xl text-gray-500 font-medium">
           Can't decide? Let me pick a random activity for you
         </p>
       </div>
 
-      {/* Surprise Button - Centered */}
-      <div className="flex justify-center py-12">
+      {/* Surprise Button */}
+      <div className="flex justify-center py-4">
         <button
           onClick={getRandomActivity}
           disabled={isAnimating}
           className={`
-            px-16 py-8 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-500 text-white
+            px-12 py-6 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-500 text-white
             font-bold text-xl tracking-wider shadow-lg shadow-pink-200/50
             transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5
-            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0
-            flex items-center justify-center
+            disabled:opacity-50 disabled:cursor-not-allowed
+            flex items-center justify-center gap-4
             ${isAnimating ? 'animate-pulse' : ''}
           `}
-          style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}
         >
-          <div className="flex items-center justify-center gap-4">
-            <Sparkles className="w-8 h-8" />
-            <span>{isAnimating ? 'THINKING...' : 'SURPRISE ME'}</span>
-            <Sparkles className="w-8 h-8" />
-          </div>
+          <Sparkles className="w-6 h-6" />
+          <span>{isAnimating ? 'THINKING...' : 'SURPRISE ME'}</span>
+          <Sparkles className="w-6 h-6" />
         </button>
       </div>
 
-      {/* Activity Card - Centered */}
+      {/* Activity Card */}
       {currentActivity && (
-        <div className="max-w-2xl mx-auto w-full">
-          <div className="cute-card p-12 bg-white text-center space-y-6 rounded-2xl">
-            <div className="inline-block rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 text-white px-6 py-2 font-semibold" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+        <div className="max-w-2xl mx-auto w-full fade-in">
+          <div className="p-12 bg-white text-center space-y-6 rounded-3xl border border-gray-100 shadow-xl shadow-gray-100/50">
+            <div className="inline-block rounded-xl bg-pink-50 text-pink-500 px-6 py-2 font-bold tracking-wider text-sm">
               {currentActivity.category}
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold leading-tight text-gray-800" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
+            <h3 className="text-2xl md:text-3xl font-bold leading-tight text-gray-800">
               {currentActivity.text}
             </h3>
-            <div className="inline-block rounded-xl bg-gray-800 text-white px-8 py-3 font-bold" style={{ fontFamily: "'Zen Dots', sans-serif" }}>
+            <div className="inline-block rounded-xl bg-gray-900 text-white px-8 py-3 font-black tracking-wider text-sm">
               +5 POINTS
             </div>
           </div>
