@@ -1,337 +1,57 @@
 @import "tailwindcss";
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
 
 :root {
-  --neon-blue: #00f3ff;
-  --neon-pink: #ff006e;
-  --neon-purple: #9d4edd;
-  --neon-green: #39ff14;
-  --neon-yellow: #ffff00;
-  --dark-bg: #0a0e27;
-  --darker-bg: #050814;
-  --card-bg: #12182e;
+  --primary: #ff006e;
+  --bg-main: #F8FAFC;
 }
 
-/* Custom Gaming Cursor */
 body {
   font-family: 'Rajdhani', sans-serif;
+  background-color: var(--bg-main);
+  color: #1e293b;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--dark-bg);
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%2300f3ff" opacity="0.3"/><circle cx="12" cy="12" r="3" fill="%2300f3ff"/></svg>'), auto;
-  overflow-x: hidden;
 }
 
-/* Animated Background */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 90%, rgba(157, 78, 221, 0.08) 0%, transparent 50%);
-  pointer-events: none;
-  animation: bgPulse 8s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes bgPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-/* Grid Pattern */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-body.dark-mode {
-  background-color: var(--darker-bg);
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
   font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
-/* Neon Glow Effect */
-.neon-text {
-  text-shadow: 
-    0 0 10px var(--neon-blue),
-    0 0 20px var(--neon-blue),
-    0 0 30px var(--neon-blue),
-    0 0 40px var(--neon-blue);
-  animation: neonPulse 2s ease-in-out infinite;
+/* Modern Card Style */
+.cute-card {
+  background: white;
+  border-radius: 24px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  transition: all 0.3s ease;
 }
 
-@keyframes neonPulse {
-  0%, 100% {
-    text-shadow: 
-      0 0 10px var(--neon-blue),
-      0 0 20px var(--neon-blue),
-      0 0 30px var(--neon-blue),
-      0 0 40px var(--neon-blue);
-  }
-  50% {
-    text-shadow: 
-      0 0 5px var(--neon-blue),
-      0 0 10px var(--neon-blue),
-      0 0 15px var(--neon-blue),
-      0 0 20px var(--neon-blue);
-  }
+.cute-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05);
 }
 
-/* Gaming Button Styles */
+/* Smooth Transitions */
 button {
-  position: relative;
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23ff006e" opacity="0.5"/><circle cx="12" cy="12" r="4" fill="%23ff006e"/></svg>'), pointer;
-  user-select: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-button::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(0, 243, 255, 0.1), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-button:hover::before {
-  opacity: 1;
-  animation: shimmer 1s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:active {
   transform: scale(0.95);
 }
 
-/* Glitch Effect */
-.glitch {
-  position: relative;
-  animation: glitch 3s infinite;
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-@keyframes glitch {
-  0%, 90%, 100% {
-    transform: translate(0);
-  }
-  92% {
-    transform: translate(-2px, 2px);
-  }
-  94% {
-    transform: translate(2px, -2px);
-  }
-  96% {
-    transform: translate(-2px, -2px);
-  }
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
 }
-
-/* Scanline Effect */
-.scanline {
-  position: relative;
-  overflow: hidden;
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
 }
-
-.scanline::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 243, 255, 0.3);
-  animation: scan 3s linear infinite;
-}
-
-@keyframes scan {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100vh); }
-}
-
-/* Card Hover Effects */
-.game-card {
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--card-bg);
-  border: 2px solid rgba(0, 243, 255, 0.2);
-  overflow: hidden;
-}
-
-.game-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, 
-    rgba(0, 243, 255, 0.1) 0%, 
-    transparent 50%, 
-    rgba(255, 0, 110, 0.1) 100%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.game-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--neon-blue);
-  box-shadow: 
-    0 0 20px rgba(0, 243, 255, 0.3),
-    0 0 40px rgba(0, 243, 255, 0.2),
-    0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.game-card:hover::before {
-  opacity: 1;
-}
-
-/* Energy Bar Animation */
-@keyframes energyPulse {
-  0%, 100% {
-    box-shadow: 0 0 10px var(--neon-blue), inset 0 0 10px var(--neon-blue);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--neon-pink), inset 0 0 20px var(--neon-pink);
-  }
-}
-
-/* Dark Mode Adjustments */
-.dark-mode {
-  background-color: var(--darker-bg);
-  color: #ffffff;
-}
-
-.dark-mode .border-black {
-  border-color: var(--neon-blue) !important;
-}
-
-.dark-mode .bg-white {
-  background-color: var(--card-bg);
-}
-
-.dark-mode .bg-gray-50 {
-  background-color: rgba(18, 24, 46, 0.5);
-}
-
-.dark-mode .bg-gray-100 {
-  background-color: rgba(18, 24, 46, 0.7);
-}
-
-.dark-mode .text-gray-400 {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.dark-mode .text-gray-600 {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dark-mode .text-gray-700 {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Neon Border Animation */
-@keyframes neonBorder {
-  0%, 100% {
-    border-color: var(--neon-blue);
-    box-shadow: 0 0 5px var(--neon-blue);
-  }
-  33% {
-    border-color: var(--neon-pink);
-    box-shadow: 0 0 5px var(--neon-pink);
-  }
-  66% {
-    border-color: var(--neon-purple);
-    box-shadow: 0 0 5px var(--neon-purple);
-  }
-}
-
-.neon-border-animate {
-  animation: neonBorder 3s linear infinite;
-}
-
-/* Hexagon Patterns */
-.hex-pattern {
-  background-image: 
-    linear-gradient(30deg, rgba(0, 243, 255, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(0, 243, 255, 0.05) 87.5%, rgba(0, 243, 255, 0.05)),
-    linear-gradient(150deg, rgba(0, 243, 255, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(0, 243, 255, 0.05) 87.5%, rgba(0, 243, 255, 0.05)),
-    linear-gradient(30deg, rgba(0, 243, 255, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(0, 243, 255, 0.05) 87.5%, rgba(0, 243, 255, 0.05)),
-    linear-gradient(150deg, rgba(0, 243, 255, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(0, 243, 255, 0.05) 87.5%, rgba(0, 243, 255, 0.05));
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
-}
-
-/* Stats Display */
-.stat-display {
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 243, 255, 0.1) 100%);
-  border: 2px solid var(--neon-blue);
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-display::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(0, 243, 255, 0.1), transparent);
-  transform: rotate(45deg);
-  animation: statShine 3s infinite;
-}
-
-@keyframes statShine {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
-/* Level Up Animation */
-@keyframes levelUp {
-  0% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.2);
-    filter: brightness(1.5);
-  }
-  100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-}
-
-.level-up {
-  animation: levelUp 0.5s ease-out;
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

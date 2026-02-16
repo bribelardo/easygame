@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { User, Trophy, RotateCcw, Save } from 'lucide-react'
+import { User, Trophy, RotateCcw, Save, ShieldAlert, Award } from 'lucide-react'
 
 const SettingsPanel = ({ points, setPoints, nickname, setNickname }) => {
   const [tempNickname, setTempNickname] = useState(nickname)
@@ -27,176 +27,145 @@ const SettingsPanel = ({ points, setPoints, nickname, setNickname }) => {
     return 'BEGINNER'
   }
 
+  const nextMilestone = [50, 100, 250, 500, 1000].find(x => x > points) || 1000
+  const progressPercent = Math.min((points / nextMilestone) * 100, 100)
+
   return (
-    <div className="space-y-12 w-full flex flex-col items-center">
-      {/* Header */}
-      <div className="text-center space-y-4 w-full">
-        <h2 className="text-5xl font-bold tracking-tight" style={{ fontFamily: "'Iceland', sans-serif" }}>
-          SETTINGS
+    <div className="space-y-8 animate-in fade-in duration-500">
+      {/* Header Section */}
+      <div className="text-center space-y-2 mb-10">
+        <h2 className="text-4xl font-black text-gray-900" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+          USER <span className="text-pink-500">PROFILE</span>
         </h2>
-        <p className="text-xl text-gray-600" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
-          Manage your profile and progress
-        </p>
+        <p className="text-lg text-gray-500 font-medium">Manage your identity and track progress</p>
       </div>
 
-      {/* Profile Card */}
-      <div className="cute-card p-12 bg-white rounded-2xl">
-        <div className="space-y-8">
-          {/* Avatar and Name - CENTERED */}
-          <div className="text-center">
-            <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-pink-400 to-pink-500 text-white mx-auto flex items-center justify-center mb-4 shadow-lg">
-              <span className="text-6xl font-bold" style={{ fontFamily: "'Iceland', sans-serif" }}>
+      {/* Main Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Profile Card (Large) */}
+        <div className="md:col-span-2 bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-8">
+          <div className="relative">
+            <div className="w-32 h-32 rounded-[24px] bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center shadow-lg shadow-pink-200">
+              <span className="text-5xl font-black text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>
                 {nickname ? nickname.charAt(0).toUpperCase() : '?'}
               </span>
             </div>
-            <h3 className="text-3xl font-bold mb-3" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
-              {nickname || 'ANONYMOUS'}
-            </h3>
-            <div className="inline-block rounded-xl bg-gray-800 text-white px-8 py-3 font-bold" style={{ fontFamily: "'Zen Dots', sans-serif" }}>
-              {getTrophyLevel()}
+            <div className="absolute -bottom-2 -right-2 bg-white p-2 rounded-xl shadow-md border border-gray-50">
+              <Award className="w-6 h-6 text-amber-500" />
             </div>
           </div>
-
-          {/* Stats - GRID */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="cute-card border-2 border-pink-100 p-6 rounded-xl">
-              <Trophy className="w-8 h-8 mb-2 text-amber-500" />
-              <p className="text-sm text-gray-600 mb-2" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
-                TOTAL POINTS
-              </p>
-              <p className="text-4xl font-bold" style={{ fontFamily: "'Zen Dots', sans-serif" }}>
-                {points}
-              </p>
+          
+          <div className="flex-1 text-center md:text-left space-y-4">
+            <div>
+              <h3 className="text-3xl font-black text-gray-800 tracking-tight">{nickname || 'ANONYMOUS'}</h3>
+              <span className="inline-block mt-1 px-4 py-1 rounded-full bg-gray-900 text-white text-[10px] font-black tracking-[0.2em] uppercase">
+                {getTrophyLevel()}
+              </span>
             </div>
-
-            <div className="cute-card border-2 border-pink-100 p-6 rounded-xl">
-              <p className="text-sm text-gray-600 mb-2" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
-                NEXT LEVEL
-              </p>
-              <p className="text-xl font-bold" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
-                {points >= 1000 
-                  ? 'MAX LEVEL' 
-                  : `${[50, 100, 250, 500, 1000].find(x => x > points) - points} PTS`
-                }
-              </p>
-              <div className="mt-3 bg-gray-200 h-3">
+            
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs font-bold text-gray-400 uppercase tracking-widest">
+                <span>Rank Progress</span>
+                <span>{Math.round(progressPercent)}%</span>
+              </div>
+              <div className="h-3 bg-gray-50 rounded-full overflow-hidden border border-gray-100">
                 <div 
-                  className="h-full bg-black transition-all duration-500"
-                  style={{ width: `${Math.min((points / 1000) * 100, 100)}%` }}
+                  className="h-full bg-gradient-to-r from-pink-500 to-violet-500 transition-all duration-1000"
+                  style={{ width: `${progressPercent}%` }}
                 ></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Nickname Section */}
-      <div className="cute-card border-2 border-pink-100 p-10 bg-white rounded-2xl">
-        <div className="flex items-center gap-3 mb-6">
-          <User className="w-6 h-6" />
-          <h3 className="text-2xl font-bold tracking-wider" style={{ fontFamily: "'Iceland', sans-serif" }}>
-            CHANGE NICKNAME
-          </h3>
-        </div>
-        <div className="flex gap-4">
-          <input
-            type="text"
-            value={tempNickname}
-            onChange={(e) => setTempNickname(e.target.value)}
-            placeholder="ENTER YOUR NICKNAME..."
-            maxLength={20}
-            className="flex-1 px-6 py-4 border-2 border-black focus:outline-none text-lg uppercase"
-            style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}
-          />
-          <button
-            onClick={handleSaveNickname}
-            className="flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
-            style={{ fontFamily: "'Rajdhani', sans-serif" }}
-          >
-            <Save className="w-5 h-5" />
-            SAVE
-          </button>
+        {/* Total Points Card (Small) */}
+        <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center space-y-2">
+          <Trophy className="w-10 h-10 text-amber-500 mb-2" />
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Points</span>
+          <span className="text-5xl font-black text-gray-900 tracking-tighter" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            {points}
+          </span>
         </div>
       </div>
 
-      {/* Achievements */}
-      <div className="cute-card border-2 border-pink-100 p-10 bg-white rounded-2xl">
-        <h3 className="text-3xl font-bold mb-8 tracking-wider" style={{ fontFamily: "'Iceland', sans-serif" }}>
-          ACHIEVEMENTS
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {[
-            { name: 'FIRST STEPS', points: 0, unlocked: points >= 0 },
-            { name: 'GETTING STARTED', points: 50, unlocked: points >= 50 },
-            { name: 'CENTURY CLUB', points: 100, unlocked: points >= 100 },
-            { name: 'QUARTER MASTER', points: 250, unlocked: points >= 250 },
-            { name: 'HALF LEGEND', points: 500, unlocked: points >= 500 },
-            { name: 'MAXED OUT', points: 1000, unlocked: points >= 1000 },
-          ].map((achievement) => (
-            <div
-              key={achievement.name}
-              className={`
-                p-6 rounded-xl text-center transition-all
-                ${achievement.unlocked 
-                  ? 'bg-gradient-to-br from-pink-400 to-pink-500 text-white' 
-                  : 'bg-gray-50 text-gray-400 border-2 border-gray-200'
-                }
-              `}
+      {/* Account Settings Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Nickname Change */}
+        <div className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm space-y-6">
+          <div className="flex items-center gap-3">
+            <User className="w-5 h-5 text-pink-500" />
+            <h4 className="font-bold text-gray-800 uppercase tracking-widest text-sm">Identity Settings</h4>
+          </div>
+          <div className="flex flex-col gap-3">
+            <input
+              type="text"
+              value={tempNickname}
+              onChange={(e) => setTempNickname(e.target.value)}
+              placeholder="Enter your nickname..."
+              className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-pink-100 focus:bg-white transition-all font-bold text-gray-700"
+            />
+            <button
+              onClick={handleSaveNickname}
+              className="flex items-center justify-center gap-2 w-full py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-pink-600 transition-all shadow-lg shadow-gray-200"
             >
-              <Trophy className={`w-10 h-10 mx-auto mb-3 ${achievement.unlocked ? 'text-white' : 'text-gray-400'}`} />
-              <p className="font-bold text-sm mb-1" style={{ fontFamily: "'Zen Dots', sans-serif", fontSize: '0.65rem' }}>
-                {achievement.name}
-              </p>
-              <p className="text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
-                {achievement.points} PTS
-              </p>
+              <Save className="w-4 h-4" />
+              SAVE CHANGES
+            </button>
+          </div>
+        </div>
+
+        {/* Danger Zone */}
+        <div className="bg-red-50/50 p-8 rounded-[32px] border border-red-100 space-y-6">
+          <div className="flex items-center gap-3">
+            <ShieldAlert className="w-5 h-5 text-red-500" />
+            <h4 className="font-bold text-red-800 uppercase tracking-widest text-sm">Danger Zone</h4>
+          </div>
+          <p className="text-sm text-red-600 font-medium">Resetting will permanently delete your rank and progress.</p>
+          
+          {!showResetConfirm ? (
+            <button
+              onClick={() => setShowResetConfirm(true)}
+              className="w-full py-4 bg-white border border-red-200 text-red-500 rounded-2xl font-bold hover:bg-red-500 hover:text-white transition-all"
+            >
+              RESET ALL DATA
+            </button>
+          ) : (
+            <div className="flex gap-2 animate-in zoom-in-95">
+              <button onClick={handleReset} className="flex-1 py-4 bg-red-600 text-white rounded-2xl font-bold text-xs uppercase">Confirm</button>
+              <button onClick={() => setShowResetConfirm(false)} className="flex-1 py-4 bg-white border border-gray-200 text-gray-500 rounded-2xl font-bold text-xs uppercase">Cancel</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Achievements Section */}
+      <div className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm">
+        <h4 className="font-bold text-gray-800 uppercase tracking-widest text-sm mb-8 text-center">Badges & Achievements</h4>
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          {[
+            { name: 'Rookie', pts: 0 },
+            { name: 'Starter', pts: 50 },
+            { name: 'Century', pts: 100 },
+            { name: 'Elite', pts: 250 },
+            { name: 'Legend', pts: 500 },
+            { name: 'Godly', pts: 1000 },
+          ].map((ach) => (
+            <div
+              key={ach.name}
+              className={`p-4 rounded-[24px] text-center space-y-2 border-2 transition-all
+                ${points >= ach.pts 
+                  ? 'bg-white border-pink-100 shadow-md' 
+                  : 'bg-gray-50 border-transparent opacity-40 grayscale'}`}
+            >
+              <Award className={`w-8 h-8 mx-auto ${points >= ach.pts ? 'text-pink-500' : 'text-gray-300'}`} />
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-tighter text-gray-900">{ach.name}</p>
+                <p className="text-[9px] font-bold text-gray-400">{ach.pts} PTS</p>
+              </div>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Reset Section */}
-      <div className="cute-card border-2 border-pink-100 p-10 bg-white rounded-2xl">
-        <div className="flex items-center gap-3 mb-6">
-          <RotateCcw className="w-6 h-6" />
-          <h3 className="text-2xl font-bold tracking-wider" style={{ fontFamily: "'Iceland', sans-serif" }}>
-            RESET ALL DATA
-          </h3>
-        </div>
-        <p className="text-gray-600 mb-6" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
-          This will permanently delete all your progress, points, and settings
-        </p>
-        {!showResetConfirm ? (
-          <button
-            onClick={() => setShowResetConfirm(true)}
-            className="px-8 py-4 rounded-xl bg-red-400 text-white font-semibold hover:bg-red-500 transition-all duration-300"
-            style={{ fontFamily: "'Rajdhani', sans-serif" }}
-          >
-            RESET EVERYTHING
-          </button>
-        ) : (
-          <div className="space-y-4">
-            <p className="font-bold text-lg" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
-              ARE YOU SURE?
-            </p>
-            <div className="flex gap-4">
-              <button
-                onClick={handleReset}
-                className="px-8 py-4 rounded-xl bg-red-500 text-white font-semibold hover:bg-red-600 transition-all duration-300"
-                style={{ fontFamily: "'Rajdhani', sans-serif" }}
-              >
-                YES, RESET
-              </button>
-              <button
-                onClick={() => setShowResetConfirm(false)}
-                className="px-8 py-4 rounded-xl bg-gray-200 text-gray-800 font-semibold hover:bg-gray-300 transition-all duration-300"
-                style={{ fontFamily: "'Rajdhani', sans-serif" }}
-              >
-                CANCEL
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )

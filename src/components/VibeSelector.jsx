@@ -9,60 +9,66 @@ const VibeSelector = ({ addPoints }) => {
       id: 'focus',
       name: 'FOCUS',
       icon: Brain,
+      color: 'text-sky-500',
       playlists: [
-        { name: 'Lo-fi Beats', url: 'https://open.spotify.com/playlist/0vvXsWCC9xrXsKd4FyS8kM' },
-        { name: 'Peaceful Piano', url: 'https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO' },
-        { name: 'Study Music', url: 'https://www.youtube.com/watch?v=jfKfPfyJRdk' },
+        { name: 'Lo-fi Beats', url: 'https://spotify.com' },
+        { name: 'Peaceful Piano', url: 'https://spotify.com' },
+        { name: 'Study Music', url: 'https://youtube.com' },
       ],
     },
     {
       id: 'hype',
       name: 'HYPE',
       icon: Zap,
+      color: 'text-amber-500',
       playlists: [
-        { name: 'Beast Mode', url: 'https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP' },
-        { name: 'Workout Motivation', url: 'https://www.youtube.com/watch?v=wT87RNUL7Dk' },
-        { name: 'Power Hour', url: 'https://open.spotify.com/playlist/37i9dQZF1DX3WvGXE8FqYX' },
+        { name: 'Beast Mode', url: 'https://spotify.com' },
+        { name: 'Workout Motivation', url: 'https://youtube.com' },
+        { name: 'Power Hour', url: 'https://spotify.com' },
       ],
     },
     {
       id: 'chill',
       name: 'CHILL',
       icon: Cloud,
+      color: 'text-teal-500',
       playlists: [
-        { name: 'Chill Hits', url: 'https://open.spotify.com/playlist/37i9dQZF1DX4WYpdgoIcn6' },
-        { name: 'Ambient Relaxation', url: 'https://www.youtube.com/watch?v=4EoxFGa7kUE' },
-        { name: 'Sunday Morning', url: 'https://open.spotify.com/playlist/37i9dQZF1DX0wMD1sSXj6T' },
+        { name: 'Chill Hits', url: 'https://spotify.com' },
+        { name: 'Ambient Relaxation', url: 'https://youtube.com' },
+        { name: 'Sunday Morning', url: 'https://spotify.com' },
       ],
     },
     {
       id: 'sad',
       name: 'SAD',
       icon: Heart,
+      color: 'text-pink-500',
       playlists: [
-        { name: 'Sad Songs', url: 'https://open.spotify.com/playlist/37i9dQZF1DX3YSRoSdA634' },
-        { name: 'Life Sucks', url: 'https://open.spotify.com/playlist/37i9dQZF1DX3YSRoSdA634' },
-        { name: 'Heartbreak Acoustic', url: 'https://www.youtube.com/watch?v=OXgb2RnPJQM' },
+        { name: 'Sad Songs', url: 'https://spotify.com' },
+        { name: 'Life Sucks', url: 'https://spotify.com' },
+        { name: 'Heartbreak Acoustic', url: 'https://youtube.com' },
       ],
     },
     {
       id: 'party',
       name: 'PARTY',
       icon: PartyPopper,
+      color: 'text-orange-500',
       playlists: [
-        { name: 'Party Hits', url: 'https://open.spotify.com/playlist/37i9dQZF1DXaXB8fQg7xif' },
-        { name: 'Dance Party', url: 'https://open.spotify.com/playlist/37i9dQZF1DX0BcQWzuB7XP' },
-        { name: 'EDM Bangers', url: 'https://www.youtube.com/watch?v=5NV6Rdv1a3I' },
+        { name: 'Party Hits', url: 'https://spotify.com' },
+        { name: 'Dance Party', url: 'https://spotify.com' },
+        { name: 'EDM Bangers', url: 'https://youtube.com' },
       ],
     },
     {
       id: 'study',
       name: 'STUDY',
       icon: BookOpen,
+      color: 'text-indigo-500',
       playlists: [
-        { name: 'Instrumental Study', url: 'https://open.spotify.com/playlist/37i9dQZF1DX8NTLI2TtZa6' },
-        { name: 'Classical Focus', url: 'https://www.youtube.com/watch?v=BHACKCNDMW8' },
-        { name: 'Cafe Ambience', url: 'https://www.youtube.com/watch?v=gaJqz32PfrU' },
+        { name: 'Instrumental Study', url: 'https://spotify.com' },
+        { name: 'Classical Focus', url: 'https://youtube.com' },
+        { name: 'Cafe Ambience', url: 'https://youtube.com' },
       ],
     },
   ]
@@ -73,19 +79,17 @@ const VibeSelector = ({ addPoints }) => {
   }
 
   return (
-    <div className="space-y-12">
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <h2 className="text-5xl font-bold" style={{ fontFamily: "'Iceland', sans-serif" }}>
-          VIBE CHECK
+    <div className="space-y-10 animate-in fade-in duration-500">
+      {/* Header Alignment */}
+      <div className="text-center space-y-2">
+        <h2 className="text-4xl font-black text-gray-900" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+          VIBE <span className="text-pink-500">CHECK</span>
         </h2>
-        <p className="text-xl text-gray-600" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
-          What's your mood today?
-        </p>
+        <p className="text-lg text-gray-500 font-medium">What's your mood today?</p>
       </div>
 
-      {/* Vibe Grid */}
-      <div className="grid grid-cols-3 gap-8">
+      {/* Grid Alignment: 3 columns with uniform gaps */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {vibes.map((vibe) => {
           const Icon = vibe.icon
           const isSelected = selectedVibe?.id === vibe.id
@@ -94,48 +98,51 @@ const VibeSelector = ({ addPoints }) => {
               key={vibe.id}
               onClick={() => handleVibeClick(vibe)}
               className={`
-                p-12 border-2 border-black transition-colors
-                ${isSelected ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-50'}
+                relative overflow-hidden p-8 rounded-3xl border-2 transition-all duration-300
+                flex flex-col items-center justify-center gap-4
+                ${isSelected 
+                  ? 'border-pink-500 bg-pink-50 ring-4 ring-pink-100' 
+                  : 'border-gray-100 bg-white hover:border-pink-200 hover:shadow-lg hover:-translate-y-1'}
               `}
             >
-              <div className="space-y-6">
-                <Icon className="w-16 h-16 mx-auto" />
-                <h3 className="text-2xl font-bold text-center" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
-                  {vibe.name}
-                </h3>
-              </div>
+              <Icon className={`w-10 h-10 ${isSelected ? 'text-pink-500' : vibe.color}`} />
+              <span className={`font-bold tracking-widest text-sm ${isSelected ? 'text-pink-600' : 'text-gray-600'}`}>
+                {vibe.name}
+              </span>
             </button>
           )
         })}
       </div>
 
-      {/* Playlists */}
+      {/* Playlist Section Alignment */}
       {selectedVibe && (
-        <div className="border-4 border-black p-10 bg-white">
-          <h3 className="text-3xl font-bold mb-8 text-center" style={{ fontFamily: "'Iceland', sans-serif" }}>
-            {selectedVibe.name} PLAYLISTS
-          </h3>
+        <div className="mt-12 p-8 rounded-[32px] bg-gray-50 border border-gray-100 animate-in slide-in-from-bottom-4 duration-500">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="h-[2px] w-8 bg-pink-200"></div>
+            <h3 className="text-xl font-bold text-gray-800 tracking-tight">
+              {selectedVibe.name} SELECTIONS
+            </h3>
+            <div className="h-[2px] w-8 bg-pink-200"></div>
+          </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {selectedVibe.playlists.map((playlist, index) => (
               <a
                 key={index}
                 href={playlist.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-2 border-black p-6 hover:bg-black hover:text-white transition-colors group"
+                className="group flex items-center justify-between p-5 bg-white rounded-2xl border border-gray-100 hover:border-pink-300 hover:shadow-md transition-all"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 border-2 border-black group-hover:border-white flex items-center justify-center">
-                    <span className="text-2xl font-bold" style={{ fontFamily: "'Zen Dots', sans-serif" }}>
-                      {index + 1}
-                    </span>
-                  </div>
-                  <ExternalLink className="w-5 h-5" />
+                <div className="flex items-center gap-4">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 text-xs font-bold text-gray-400 group-hover:bg-pink-50 group-hover:text-pink-500 transition-colors">
+                    {index + 1}
+                  </span>
+                  <span className="font-bold text-gray-700 group-hover:text-gray-900 transition-colors">
+                    {playlist.name}
+                  </span>
                 </div>
-                <h4 className="font-bold text-lg" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
-                  {playlist.name}
-                </h4>
+                <ExternalLink className="w-4 h-4 text-gray-300 group-hover:text-pink-500" />
               </a>
             ))}
           </div>

@@ -24,35 +24,38 @@ function App() {
   }
 
   const tabs = [
-    { id: 'surprise', name: 'SURPRISE', icon: Sparkles, gradient: 'from-pink-400 to-pink-500' },
-    { id: 'vibe', name: 'VIBES', icon: Music, gradient: 'from-sky-300 to-teal-400' },
-    { id: 'games', name: 'GAMES', icon: Gamepad2, gradient: 'from-violet-300 to-pink-400' },
-    { id: 'settings', name: 'SETTINGS', icon: SettingsIcon, gradient: 'from-amber-300 to-yellow-400' },
+    { id: 'surprise', name: 'SURPRISE', icon: Sparkles, color: 'text-pink-500', bg: 'bg-pink-50' },
+    { id: 'vibe', name: 'VIBES', icon: Music, color: 'text-sky-500', bg: 'bg-sky-50' },
+    { id: 'games', name: 'GAMES', icon: Gamepad2, color: 'text-violet-500', bg: 'bg-violet-50' },
+    { id: 'settings', name: 'SETTINGS', icon: SettingsIcon, color: 'text-amber-500', bg: 'bg-amber-50' },
   ]
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF5F7] flex flex-col items-center p-6 md:p-10">
-      <div className="w-full max-w-5xl flex flex-col items-center space-y-8">
-        {/* Header */}
-        <header className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-800 mb-4" style={{ fontFamily: "'Iceland', sans-serif" }}>
-            BOREDOM BUSTER
-          </h1>
-          {nickname && (
-            <div className="flex items-center justify-center gap-4">
-              <span className="px-6 py-2 rounded-2xl bg-white/80 text-gray-800 font-semibold shadow-sm" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                Hey, {nickname}
-              </span>
-              <span className="px-6 py-2 rounded-2xl bg-white/80 text-gray-800 font-semibold shadow-sm flex items-center gap-2" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                <Trophy className="w-5 h-5 text-amber-500" />
-                {points}
-              </span>
+    <div className="w-full min-h-screen bg-[#F8FAFC] flex flex-col items-center p-4 md:p-8">
+      <div className="w-full max-w-6xl flex flex-col gap-8">
+        
+        {/* Modern Header Section */}
+        <header className="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+          <div>
+            <h1 className="text-3xl font-black tracking-tighter text-gray-900" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+              BOREDOM <span className="text-pink-500">BUSTER</span>
+            </h1>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gray-50 border border-gray-100">
+              <span className="text-sm font-bold text-gray-500 uppercase tracking-widest">Player:</span>
+              <span className="font-bold text-gray-800">{nickname || 'Guest'}</span>
             </div>
-          )}
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-50 border border-amber-100">
+              <Trophy className="w-4 h-4 text-amber-500" />
+              <span className="font-bold text-amber-700">{points} PTS</span>
+            </div>
+          </div>
         </header>
 
-        {/* Navigation - Separate rounded buttons */}
-        <nav className="flex flex-wrap justify-center gap-4">
+        {/* Improved Navigation - Clean Pills */}
+        <nav className="flex justify-center gap-2 md:gap-4 p-2 bg-white rounded-full shadow-sm border border-gray-100 self-center">
           {tabs.map((tab) => {
             const Icon = tab.icon
             const isActive = activeTab === tab.id
@@ -61,36 +64,34 @@ function App() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  px-8 py-4 rounded-2xl font-semibold text-white text-sm uppercase tracking-wide
-                  bg-gradient-to-r ${tab.gradient}
-                  shadow-lg shadow-gray-300/50 hover:shadow-xl hover:shadow-gray-300/60
-                  hover:-translate-y-0.5 transition-all duration-300
-                  ${isActive ? 'ring-4 ring-white/40 scale-[1.02]' : ''}
+                  flex items-center gap-2 px-4 md:px-8 py-3 rounded-full font-bold transition-all duration-300
+                  ${isActive 
+                    ? `${tab.bg} ${tab.color} shadow-inner scale-95` 
+                    : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'}
                 `}
-                style={{ fontFamily: "'Rajdhani', sans-serif" }}
               >
-                <div className="flex items-center justify-center gap-2">
-                  <Icon className="w-5 h-5" />
-                  <span>{tab.name}</span>
-                </div>
+                <Icon className="w-5 h-5" />
+                <span className="hidden md:block text-xs tracking-widest uppercase">{tab.name}</span>
               </button>
             )
           })}
         </nav>
 
-        {/* Main Content Card - Floating white card */}
-        <main className="w-full rounded-3xl bg-white p-8 md:p-12 shadow-xl shadow-pink-200/30 min-h-[500px]">
-          {activeTab === 'surprise' && <SurpriseMe addPoints={addPoints} />}
-          {activeTab === 'vibe' && <VibeSelector addPoints={addPoints} />}
-          {activeTab === 'games' && <GameArcade addPoints={addPoints} />}
-          {activeTab === 'settings' && (
-            <SettingsPanel
-              points={points}
-              setPoints={setPoints}
-              nickname={nickname}
-              setNickname={setNickname}
-            />
-          )}
+        {/* Main Content Area - Clean White Space */}
+        <main className="w-full min-h-[600px] bg-white rounded-[40px] p-8 md:p-12 shadow-xl shadow-gray-200/50 border border-gray-50">
+          <div className="max-w-4xl mx-auto">
+            {activeTab === 'surprise' && <SurpriseMe addPoints={addPoints} />}
+            {activeTab === 'vibe' && <VibeSelector addPoints={addPoints} />}
+            {activeTab === 'games' && <GameArcade addPoints={addPoints} />}
+            {activeTab === 'settings' && (
+              <SettingsPanel
+                points={points}
+                setPoints={setPoints}
+                nickname={nickname}
+                setNickname={setNickname}
+              />
+            )}
+          </div>
         </main>
       </div>
     </div>
